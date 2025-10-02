@@ -42,12 +42,12 @@ function hw_install_required_packages() {
         if [[ "$termux_arch" == "aarch64" || "$termux_arch" == "arm" ]]; then
             print_msg "${BOLD}Installing mesa-vulkan-icd-wrapper Driver..."
             if [[ "$PACKAGE_MANAGER" == "pacman" ]]; then
-                download_file "vulkan-wrapper-android.pkg.tar.xz" "https://github.com/sabamdarif/termux-desktop/releases/download/vulkan-wrapper-android_25.0.0-2/vulkan-wrapper-android-25.0.0-2-${termux_arch}.pkg.tar.xz"
+                download_file "vulkan-wrapper-android.pkg.tar.xz" "https://github.com/ahksoft/ahk-termux-desktop/releases/download/vulkan-wrapper-android_25.0.0-2/vulkan-wrapper-android-25.0.0-2-${termux_arch}.pkg.tar.xz"
                 pacman -Syu --needed
                 pacman -U --noconfirm vulkan-wrapper-android.pkg.tar.xz
                 check_and_delete "vulkan-wrapper-android.pkg.tar.xz"
             else
-                download_file "vulkan-wrapper-android.deb" "https://github.com/sabamdarif/termux-desktop/releases/download/vulkan-wrapper-android_25.0.0-2/vulkan-wrapper-android_25.0.0-2_${termux_arch}.deb"
+                download_file "vulkan-wrapper-android.deb" "https://github.com/ahksoft/ahk-termux-desktop/releases/download/vulkan-wrapper-android_25.0.0-2/vulkan-wrapper-android_25.0.0-2_${termux_arch}.deb"
                 dpkg --configure -a
                 apt --fix-broken install -y
                 apt install ./vulkan-wrapper-android.deb -y
@@ -66,12 +66,12 @@ function hw_install_required_packages() {
         if [[ "$termux_arch" == "aarch64" || "$termux_arch" == "arm" ]]; then
             print_msg "${BOLD}Installing freedreno kgsl..."
             if [[ "$PACKAGE_MANAGER" == "pacman" ]]; then
-                download_file "mesa-vulkan-icd-freedreno.pkg.tar.xz" "https://github.com/sabamdarif/termux-desktop/releases/download/freedreno-kgsl-25.1/mesa-vulkan-icd-freedreno_25.1.1-2_${termux_arch}.pkg.tar.xz"
+                download_file "mesa-vulkan-icd-freedreno.pkg.tar.xz" "https://github.com/ahksoft/ahk-termux-desktop/releases/download/freedreno-kgsl-25.1/mesa-vulkan-icd-freedreno_25.1.1-2_${termux_arch}.pkg.tar.xz"
                 pacman -Syu --needed
                 pacman -U --noconfirm mesa-vulkan-icd-freedreno.pkg.tar.xz
                 check_and_delete "mesa-vulkan-icd-freedreno.pkg.tar.xz"
             else
-                download_file "mesa-vulkan-icd-freedreno.deb" "https://github.com/sabamdarif/termux-desktop/releases/download/freedreno-kgsl-25.1/mesa-vulkan-icd-freedreno_25.1.1-2_${termux_arch}.deb"
+                download_file "mesa-vulkan-icd-freedreno.deb" "https://github.com/ahksoft/ahk-termux-desktop/releases/download/freedreno-kgsl-25.1/mesa-vulkan-icd-freedreno_25.1.1-2_${termux_arch}.deb"
                 dpkg --configure -a
                 apt --fix-broken install -y
                 apt install ./mesa-vulkan-icd-freedreno.deb -y
@@ -255,7 +255,7 @@ EOF
     create_shell_script "$save_path/install_turnip_related_packs.sh" "$install_turnip_related_packs"
     "${selected_distro_type}"-distro login "$selected_distro" -- /bin/bash -c 'bash install_turnip_related_packs.sh'
 
-    download_file "$HOME/turnip.zip" "https://github.com/sabamdarif/termux-desktop/releases/download/turnip-25.0/turnip-25.0.7-2-aarch64.zip"
+    download_file "$HOME/turnip.zip" "https://github.com/ahksoft/ahk-termux-desktop/releases/download/turnip-25.0/turnip-25.0.7-2-aarch64.zip"
     "${selected_distro_type}"-distro login "$selected_distro" -- /bin/bash -c "unzip -o $HOME/turnip.zip -d /usr"
     check_and_delete "$HOME/turnip.zip"
 }
