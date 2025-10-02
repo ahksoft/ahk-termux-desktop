@@ -673,7 +673,7 @@ function install_font_for_style() {
     local style_number="$1"
     print_msg "Installing Fonts..."
     check_and_create_directory "$HOME/.fonts"
-    download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/$de_name/look_${style_number}/font.tar.gz" "$HOME/.fonts"
+    download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/$de_name/look_${style_number}/font.tar.gz" "$HOME/.fonts"
     fc-cache -f
     cd "$HOME" || return 1
 }
@@ -849,7 +849,7 @@ function questions_theme_select() {
     fi
 
     # If custom styles exist, fetch and display them
-    local styles_url="https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/docs/${de_name}_styles.md"
+    local styles_url="https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/docs/${de_name}_styles.md"
     if curl --head --silent --fail "$styles_url" >/dev/null; then
         print_msg "Downloading list of available styles..."
         check_and_delete "${current_path}/styles.md"
@@ -868,7 +868,7 @@ function questions_theme_select() {
 
         print_msg "Check the $de_name styles preview"
         echo
-        print_msg "From Here:- ${B}https://github.com/sabamdarif/termux-desktop/blob/main/docs/${de_name}_styles.md"
+        print_msg "From Here:- ${B}https://github.com/ahksoft/ahk-termux-desktop/blob/main/docs/${de_name}_styles.md"
         echo
         print_msg "Number of available custom styles for $de_name is: ${C}${subfolder_count_value}"
         echo
@@ -898,7 +898,7 @@ function questions_theme_select() {
                 echo
                 print_msg "Check the $de_name styles section in GitHub"
                 echo
-                print_msg "${B}https://github.com/sabamdarif/termux-desktop/blob/main/docs/${de_name}_styles.md"
+                print_msg "${B}https://github.com/ahksoft/ahk-termux-desktop/blob/main/docs/${de_name}_styles.md"
                 echo
             fi
         done
@@ -1243,7 +1243,7 @@ function questions_setup_manual() {
     fi
     banner
     echo
-    print_msg "${B}Know More About Terminal Utility:- https://github.com/sabamdarif/termux-desktop/blob/main/docs/see-more.md#hammer_and_wrenchlearn-about-terminal-utilities"
+    print_msg "${B}Know More About Terminal Utility:- https://github.com/ahksoft/ahk-termux-desktop/blob/main/docs/see-more.md#hammer_and_wrenchlearn-about-terminal-utilities"
     echo
     confirmation_y_or_n "Do you want install some terminal utility to make better terminal exprience" terminal_utility_setup_answer
     banner
@@ -1325,7 +1325,7 @@ It will help you to install apps that aren't available in Termux.
 So it will set up a Linux distro container and add options to install those apps.
 Also, you can launch those installed apps from Termux like other apps.
 "
-    echo "Learn More:- https://github.com/sabamdarif/termux-desktop/blob/main/docs/proot-container.md"
+    echo "Learn More:- https://github.com/ahksoft/ahk-termux-desktop/blob/main/docs/proot-container.md"
     echo
     confirmation_y_or_n "Do you want to add a Linux container" distro_add_answer
 }
@@ -1423,7 +1423,7 @@ function distro_hw_questions() {
 function exp_vulkan_support() {
     print_msg "${BOLD}First Read This"
     echo
-    print_msg "${B}This:- https://github.com/sabamdarif/termux-desktop/blob/main/docs/hw-acceleration.md"
+    print_msg "${B}This:- https://github.com/ahksoft/ahk-termux-desktop/blob/main/docs/hw-acceleration.md"
     echo
     print_msg "${BOLD}Select the vulkan driver"
     echo
@@ -1496,7 +1496,7 @@ function hw_questions() {
     elif [[ "$exp_termux_vulkan_hw_answer" == "skip" ]]; then
         print_msg "${BOLD}First Read This"
         echo
-        print_msg "${B}This:- https://github.com/sabamdarif/termux-desktop/blob/main/docs/hw-acceleration.md"
+        print_msg "${B}This:- https://github.com/ahksoft/ahk-termux-desktop/blob/main/docs/hw-acceleration.md"
         echo
         print_msg "${BOLD}Select Hardware Acceleration API"
         echo
@@ -2026,33 +2026,33 @@ ${NC}"
         ask_to_chose_de
         setup_device_gpu_model
         # download configuration
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/generic.conf"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/generic.conf"
         source generic.conf
         check_and_delete "generic.conf"
         local device_brand_name
         device_brand_name=$(getprop ro.product.brand | cut -d ' ' -f 1)
         if [[ "$device_gpu_model_name" == "adreno" ]]; then
-            download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/hwa/adreno/generic-adreno.conf"
+            download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/hwa/adreno/generic-adreno.conf"
             source generic-adreno.conf
             check_and_delete "generic-adreno.conf"
         elif [[ "$device_gpu_model_name" == "mali" ]]; then
             if [[ $device_brand_name == samsung* ]]; then
-                download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/hwa/mali/samsung/generic-samsung-mali.conf"
+                download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/hwa/mali/samsung/generic-samsung-mali.conf"
                 source generic-samsung-mali.conf
                 check_and_delete "generic-samsung-mali.conf"
             else
-                download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/hwa/mali/generic-mali.conf"
+                download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/hwa/mali/generic-mali.conf"
                 source generic-mali.conf
                 check_and_delete "generic-mali.conf"
             fi
         else
-            download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/hwa/generic-others.conf"
+            download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/hwa/generic-others.conf"
             source generic-others.conf
             check_and_delete "generic-others.conf"
         fi
         # setup extra config if it's lite mode install
         if [[ "$lite_mode" == "1" || "$lite_mode" == "true" ]]; then
-            download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/generic-lite.conf"
+            download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/generic-lite.conf"
             source generic-lite.conf
             check_and_delete "generic-lite.conf"
         fi
@@ -2067,14 +2067,14 @@ ${NC}"
         ######################################################################
         ask_to_chose_de
         # download configuration
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/generic.conf"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/generic.conf"
         source generic.conf
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/nohwa/generic-nohwa.conf"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/nohwa/generic-nohwa.conf"
         source generic-nohwa.conf
         check_and_delete "generic-nohwa.conf"
         # setup extra config if it's lite mode install
         if [[ "$lite_mode" == "1" || "$lite_mode" == "true" ]]; then
-            download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/configuration/generic/generic-lite.conf"
+            download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/configuration/generic/generic-lite.conf"
             source generic-lite.conf
             check_and_delete "generic-lite.conf"
         fi
@@ -2124,7 +2124,7 @@ function chose_mirror() {
     # ln -s "$PREFIX/etc/termux/mirrors/all" "$PREFIX/etc/termux/chosen_mirrors" &>/dev/null
     # pkg --check-mirror update
     if [[ "$PACKAGE_MANAGER" == "apt" ]]; then
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/termux-fastest-repo"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/termux-fastest-repo"
         chmod +x termux-fastest-repo
         ./termux-fastest-repo
         check_and_delete "termux-fastest-repo"
@@ -2434,14 +2434,14 @@ function install_desktop() {
         mkdir gnome_packages_files
         cd gnome_packages_files || exit 1
         if [[ "$PACKAGE_MANAGER" == "apt" ]]; then
-            download_and_extract "https://github.com/sabamdarif/termux-desktop/releases/download/gnome-shell/debs-${termux_arch}.zip"
+            download_and_extract "https://github.com/ahksoft/ahk-termux-desktop/releases/download/gnome-shell/debs-${termux_arch}.zip"
             download_file "https://github.com/sabamdarif/Termux-AppStore/releases/download/files/refine_0.5.10_${termux_arch}.deb"
             dpkg --configure -a
             apt --fix-broken install -y
             apt install ./*deb -y
             apt install --fix-missing -y
         elif [[ "$PACKAGE_MANAGER" == "pacman" ]]; then
-            download_and_extract "https://github.com/sabamdarif/termux-desktop/releases/download/gnome-shell/pkgs-${termux_arch}.zip"
+            download_and_extract "https://github.com/ahksoft/ahk-termux-desktop/releases/download/gnome-shell/pkgs-${termux_arch}.zip"
             download_file "https://github.com/sabamdarif/Termux-AppStore/releases/download/files/refine_0.5.10_${termux_arch}.pkg.tar.xz"
             pacman -U --noconfirm *.pkg.tar.xz
         else
@@ -2532,7 +2532,7 @@ function theme_installer() {
     print_msg "${BOLD}Configuring Wallpapers..."
     echo
     check_and_create_directory "$PREFIX/share/backgrounds"
-    download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/wallpaper.tar.gz" "$PREFIX/share/backgrounds/"
+    download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/wallpaper.tar.gz" "$PREFIX/share/backgrounds/"
     banner
     print_msg "${BOLD}Configuring Icon Pack..."
     echo
@@ -2541,7 +2541,7 @@ function theme_installer() {
         icons_folder="$HOME/.icons"
     fi
     check_and_create_directory "$icons_folder"
-    download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/icon.tar.gz" "$icons_folder"
+    download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/icon.tar.gz" "$icons_folder"
 
     if [[ "$de_name" == "xfce" ]]; then
         local icons_themes_names
@@ -2571,7 +2571,7 @@ function theme_installer() {
         themes_folder="$HOME/.themes"
     fi
     check_and_create_directory "$themes_folder"
-    download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/theme.tar.gz" "$themes_folder"
+    download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/theme.tar.gz" "$themes_folder"
 
     print_msg "Making Additional Configuration..."
     echo
@@ -2583,9 +2583,9 @@ function theme_installer() {
     done
 
     if [[ "$de_name" == "openbox" ]]; then
-        download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/config.tar.gz" "$HOME"
+        download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/config.tar.gz" "$HOME"
     else
-        download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/config.tar.gz" "$HOME/.config/"
+        download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/config.tar.gz" "$HOME/.config/"
     fi
 
     if [ $? -ne 0 ]; then
@@ -2731,7 +2731,7 @@ function hw_config() {
     print_to_config "enable_hw_acc"
     if [[ -f ${current_path}/enable-hw-acceleration ]]; then
         local current_script_hash
-        current_script_hash=$(curl -sL https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/enable-hw-acceleration | sha256sum | cut -d ' ' -f 1)
+        current_script_hash=$(curl -sL https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/enable-hw-acceleration | sha256sum | cut -d ' ' -f 1)
         local local_script_hash
         local_script_hash=$(sha256sum "${current_path}/enable-hw-acceleration" | cut -d ' ' -f 1)
 
@@ -2743,7 +2743,7 @@ function hw_config() {
 
             if [[ "$change_old_hw_installer" == "y" ]]; then
                 check_and_backup "${current_path}/enable-hw-acceleration"
-                download_file "${current_path}/enable-hw-acceleration" https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/enable-hw-acceleration
+                download_file "${current_path}/enable-hw-acceleration" https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/enable-hw-acceleration
                 chmod +x "${current_path}/enable-hw-acceleration"
                 source "${current_path}"/enable-hw-acceleration
             else
@@ -2759,7 +2759,7 @@ function hw_config() {
             source "${current_path}/enable-hw-acceleration"
         fi
     else
-        download_file "${current_path}/enable-hw-acceleration" https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/enable-hw-acceleration
+        download_file "${current_path}/enable-hw-acceleration" https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/enable-hw-acceleration
         chmod +x "${current_path}/enable-hw-acceleration"
         source "${current_path}/enable-hw-acceleration"
     fi
@@ -2793,7 +2793,7 @@ function distro_container_setup() {
 
         if [[ -f "${current_path}/distro-container-setup" ]]; then
             local current_script_hash
-            current_script_hash=$(curl -sL https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/distro-container-setup | sha256sum | cut -d ' ' -f 1)
+            current_script_hash=$(curl -sL https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/distro-container-setup | sha256sum | cut -d ' ' -f 1)
             local local_script_hash
             local_script_hash=$(basename "$(sha256sum "${current_path}/distro-container-setup" | cut -d ' ' -f 1)")
 
@@ -2804,7 +2804,7 @@ function distro_container_setup() {
 
                 if [[ "$change_old_distro_installer" == "y" ]]; then
                     check_and_backup "${current_path}/distro-container-setup"
-                    download_file "${current_path}/distro-container-setup" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/distro-container-setup"
+                    download_file "${current_path}/distro-container-setup" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/distro-container-setup"
 
                     chmod +x "${current_path}/distro-container-setup"
                     source "${current_path}/distro-container-setup"
@@ -2821,7 +2821,7 @@ function distro_container_setup() {
                 source "${current_path}/distro-container-setup"
             fi
         else
-            download_file "${current_path}/distro-container-setup" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/distro-container-setup"
+            download_file "${current_path}/distro-container-setup" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/distro-container-setup"
 
             # it should only execute if user run --change distro / pd
             if [[ "$call_from_change_distro" == true ]]; then
@@ -2853,14 +2853,14 @@ source /data/data/com.termux/files/usr/etc/termux-desktop/common_functions
 # This code block is taken from:- https://github.com/termux/proot-distro/blob/master/proot-distro.sh#L172C1-L184C1
 TRACER_PID=\$(grep TracerPid "/proc/\$\$/status" | cut -d \$'\t' -f 2)
 if [ "\$TRACER_PID" != 0 ]; then
-	TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
-	if [ "\$TRACER_NAME" = "proot" ]; then
-		msg
-		print_failed "vncstart command should not be executed under PRoot.\${W}"
-		msg
-		exit 1
-	fi
-	unset TRACER_NAME
+        TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
+        if [ "\$TRACER_NAME" = "proot" ]; then
+                msg
+                print_failed "vncstart command should not be executed under PRoot.\${W}"
+                msg
+                exit 1
+        fi
+        unset TRACER_NAME
 fi
 unset TRACER_PID
 
@@ -2920,14 +2920,14 @@ source /data/data/com.termux/files/usr/etc/termux-desktop/common_functions
 # This code block is taken from:- https://github.com/termux/proot-distro/blob/master/proot-distro.sh#L172C1-L184C1
 TRACER_PID=\$(grep TracerPid "/proc/\$\$/status" | cut -d \$'\t' -f 2)
 if [ "\$TRACER_PID" != 0 ]; then
-	TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
-	if [ "\$TRACER_NAME" = "proot" ]; then
-		msg
-		print_failed "vncstart command should not be executed under PRoot.\${W}"
-		msg
-		exit 1
-	fi
-	unset TRACER_NAME
+        TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
+        if [ "\$TRACER_NAME" = "proot" ]; then
+                msg
+                print_failed "vncstart command should not be executed under PRoot.\${W}"
+                msg
+                exit 1
+        fi
+        unset TRACER_NAME
 fi
 unset TRACER_PID
 
@@ -2998,14 +2998,14 @@ source /data/data/com.termux/files/usr/etc/termux-desktop/common_functions
 # This code block is taken from:- https://github.com/termux/proot-distro/blob/master/proot-distro.sh#L172C1-L184C1
 TRACER_PID=$(grep TracerPid "/proc/$$/status" | cut -d $'\t' -f 2)
 if [ "$TRACER_PID" != 0 ]; then
-	TRACER_NAME=$(grep Name "/proc/${TRACER_PID}/status" | cut -d $'\t' -f 2)
-	if [ "$TRACER_NAME" = "proot" ]; then
-		msg
-		print_failed "vncstop command should not be executed under PRoot.\${W}"
-		msg
-		exit 1
-	fi
-	unset TRACER_NAME
+        TRACER_NAME=$(grep Name "/proc/${TRACER_PID}/status" | cut -d $'\t' -f 2)
+        if [ "$TRACER_NAME" = "proot" ]; then
+                msg
+                print_failed "vncstop command should not be executed under PRoot.\${W}"
+                msg
+                exit 1
+        fi
+        unset TRACER_NAME
 fi
 unset TRACER_PID
 
@@ -3015,8 +3015,8 @@ if [[ "$1" == "-f" ]] || [[ "$1" == "--force" ]]; then
 pkill -9 Xtigervnc > /dev/null 2>&1
 elif [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
 echo -e "
-vncstop     	  to stop vncserver
-vncstop --force	  to force stop vncserver
+vncstop               to stop vncserver
+vncstop --force          to force stop vncserver
 vncstop --help    to show the helps
 "
 else
@@ -3060,14 +3060,14 @@ source /data/data/com.termux/files/usr/etc/termux-desktop/common_functions
 # This code block is taken from:- https://github.com/termux/proot-distro/blob/master/proot-distro.sh#L172C1-L184C1
 TRACER_PID=\$(grep TracerPid "/proc/\$\$/status" | cut -d \$'\t' -f 2)
 if [ "\$TRACER_PID" != 0 ]; then
-	TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
-	if [ "\$TRACER_NAME" = "proot" ]; then
-		msg
-		print_failed "tx11start command should not be executed under PRoot.\${W}"
-		msg
-		exit 1
-	fi
-	unset TRACER_NAME
+        TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
+        if [ "\$TRACER_NAME" = "proot" ]; then
+                msg
+                print_failed "tx11start command should not be executed under PRoot.\${W}"
+                msg
+                exit 1
+        fi
+        unset TRACER_NAME
 fi
 unset TRACER_PID
 
@@ -3214,14 +3214,14 @@ source /data/data/com.termux/files/usr/etc/termux-desktop/common_functions
 # This code block is taken from:- https://github.com/termux/proot-distro/blob/master/proot-distro.sh#L172C1-L184C1
 TRACER_PID=\$(grep TracerPid "/proc/\$\$/status" | cut -d \$'\t' -f 2)
 if [ "\$TRACER_PID" != 0 ]; then
-	TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
-	if [ "\$TRACER_NAME" = "proot" ]; then
-		msg
-		print_failed "tx11start command should not be executed under PRoot.\${W}"
-		msg
-		exit 1
-	fi
-	unset TRACER_NAME
+        TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
+        if [ "\$TRACER_NAME" = "proot" ]; then
+                msg
+                print_failed "tx11start command should not be executed under PRoot.\${W}"
+                msg
+                exit 1
+        fi
+        unset TRACER_NAME
 fi
 unset TRACER_PID
 
@@ -3342,11 +3342,11 @@ EOF
 sleep 5
 process_id=\$(ps aux | grep '[x]fce4-screensaver' | awk '{print \$2}')
 if [[ -n "\$process_id" ]]; then
-	if \$use_debug; then
-		kill "\$process_id"
-	else
-    	kill "\$process_id" > /dev/null 2>&1
-	fi
+        if \$use_debug; then
+                kill "\$process_id"
+        else
+            kill "\$process_id" > /dev/null 2>&1
+        fi
 fi
 EOF
     fi
@@ -3364,14 +3364,14 @@ source /data/data/com.termux/files/usr/etc/termux-desktop/common_functions
 # This code block is taken from:- https://github.com/termux/proot-distro/blob/master/proot-distro.sh#L172C1-L184C1
 TRACER_PID=\$(grep TracerPid "/proc/\$\$/status" | cut -d \$'\t' -f 2)
 if [ "\$TRACER_PID" != 0 ]; then
-	TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
-	if [ "\$TRACER_NAME" = "proot" ]; then
-		msg
-		print_failed "tx11stop command should not be executed under PRoot.\${W}"
-		msg
-		exit 1
-	fi
-	unset TRACER_NAME
+        TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
+        if [ "\$TRACER_NAME" = "proot" ]; then
+                msg
+                print_failed "tx11stop command should not be executed under PRoot.\${W}"
+                msg
+                exit 1
+        fi
+        unset TRACER_NAME
 fi
 unset TRACER_PID
 
@@ -3387,9 +3387,9 @@ pkill -9 openbox* > /dev/null 2>&1
 pkill -9 dbus-* > /dev/null 2>&1
 pkill -f com.termux.x11 > /dev/null 2>&1
 sleep 1
-	if [[ ! -n "\$termux_x11_pid" ]] || [[ ! -n "\$de_pid" ]]; then
-	echo -e "${G}Termux:X11 Stopped Successfully ${NC}"
-	fi
+        if [[ ! -n "\$termux_x11_pid" ]] || [[ ! -n "\$de_pid" ]]; then
+        echo -e "${G}Termux:X11 Stopped Successfully ${NC}"
+        fi
 elif [[ "\$1" == "-f" ]] || [[ "\$1" == "--force" ]]; then
 pkill -f com.termux.x11 > /dev/null 2>&1
 pkill -9 openbox* > /dev/null 2>&1
@@ -3413,14 +3413,14 @@ source /data/data/com.termux/files/usr/etc/termux-desktop/common_functions
 # This code block is taken from:- https://github.com/termux/proot-distro/blob/master/proot-distro.sh#L172C1-L184C1
 TRACER_PID=\$(grep TracerPid "/proc/\$\$/status" | cut -d \$'\t' -f 2)
 if [ "\$TRACER_PID" != 0 ]; then
-	TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
-	if [ "\$TRACER_NAME" = "proot" ]; then
-		msg
-		print_failed "tx11stop command should not be executed under PRoot.\${W}"
-		msg
-		exit 1
-	fi
-	unset TRACER_NAME
+        TRACER_NAME=\$(grep Name "/proc/\${TRACER_PID}/status" | cut -d \$'\t' -f 2)
+        if [ "\$TRACER_NAME" = "proot" ]; then
+                msg
+                print_failed "tx11stop command should not be executed under PRoot.\${W}"
+                msg
+                exit 1
+        fi
+        unset TRACER_NAME
 fi
 unset TRACER_PID
 
@@ -3435,9 +3435,9 @@ killall virgl_test_server > /dev/null 2>&1
 pkill -9 $de_name-* > /dev/null 2>&1
 pkill -9 dbus-* > /dev/null 2>&1
 pkill -f com.termux.x11 > /dev/null 2>&1
-	if [[ ! -n "\$termux_x11_pid" ]] || [[ ! -n "\$de_pid" ]]; then
-	echo -e "${G}Termux:X11 Stopped Successfully ${NC}"
-	fi
+        if [[ ! -n "\$termux_x11_pid" ]] || [[ ! -n "\$de_pid" ]]; then
+        echo -e "${G}Termux:X11 Stopped Successfully ${NC}"
+        fi
 elif [[ "\$1" == "-f" ]] || [[ "\$1" == "--force" ]]; then
 pkill -f com.termux.x11 > /dev/null 2>&1
 pkill -9 $de_name-* > /dev/null 2>&1
@@ -3821,7 +3821,7 @@ function check_desktop_process() {
     print_msg "Backing up current Termux:x11 preferences..."
     echo
     termux-x11-preference list >"$HOME/old-termx-x11-preferences"
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/termx-x11-preferences"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/termx-x11-preferences"
     termux-x11-preference <termx-x11-preferences
     check_and_delete "termx-x11-preferences"
 }
@@ -3932,7 +3932,7 @@ function media_player_installer() {
 function setup_gimp_plugins() {
     package_install_and_check "gimp-resynthesizer"
     ### un-comment this if you want the bleeding edge version of resynthesizer
-    # download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/install-resynthesizer-termux"
+    # download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/install-resynthesizer-termux"
     # if [[ -f "install-resynthesizer-termux" ]]; then
     #     chmod +x install-resynthesizer-termux
     #     source install-resynthesizer-termux
@@ -4001,7 +4001,7 @@ function setup_zsh() {
     shell_name="zsh"
     print_msg "${BOLD}Configuring zsh.."
     package_install_and_check "zsh git"
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/setup-zsh"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/setup-zsh"
     chmod +x setup-zsh
     source setup-zsh
     check_and_delete "setup-zsh"
@@ -4017,7 +4017,7 @@ function setup_bash() {
     shell_name="bash"
     print_msg "${BOLD}Configuring bash.."
     package_install_and_check "git"
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/setup-bash"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/setup-bash"
     chmod +x setup-bash
     source setup-bash
     check_and_delete "setup-bash"
@@ -4050,7 +4050,7 @@ function terminal_utility_setup() {
         check_and_backup "$PREFIX/etc/motd"
         check_and_backup "$PREFIX/etc/motd-playstore"
         check_and_backup "$PREFIX/etc/motd.sh"
-        download_file "$PREFIX/etc/motd.sh" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/motd.sh"
+        download_file "$PREFIX/etc/motd.sh" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/motd.sh"
         if grep -q "motd.sh$" "$PREFIX/etc/termux-login.sh"; then
             sed -i "s|.*motd\.sh$|bash $PREFIX/etc/motd.sh|" "$PREFIX/etc/termux-login.sh"
         else
@@ -4060,17 +4060,17 @@ function terminal_utility_setup() {
         check_and_backup "$HOME/.termux/colors.properties $HOME/.termux/termux.properties $HOME/.aliases $HOME/.nanorc"
 
         check_and_create_directory "$HOME/.config/fastfetch"
-        download_file "$HOME/.config/fastfetch/config.jsonc" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/config.jsonc"
-        download_file "$HOME/.termux/termux.properties" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/termux.properties"
-        download_file "$HOME/.aliases" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/.aliases"
-        download_file "$HOME/.nanorc" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/.nanorc"
-        download_file "$HOME/.termux/colors.properties" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/colors.properties"
+        download_file "$HOME/.config/fastfetch/config.jsonc" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/config.jsonc"
+        download_file "$HOME/.termux/termux.properties" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/termux.properties"
+        download_file "$HOME/.aliases" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/.aliases"
+        download_file "$HOME/.nanorc" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/.nanorc"
+        download_file "$HOME/.termux/colors.properties" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/colors.properties"
         download_file "$PREFIX/bin/termux-ssh" "https://raw.githubusercontent.com/sabamdarif/simple-linux-scripts/main/termux-ssh" && chmod +x "$PREFIX/bin/termux-ssh"
-        download_file "$PREFIX/bin/termux-fastest-repo" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/termux-fastest-repo"
+        download_file "$PREFIX/bin/termux-fastest-repo" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/termux-fastest-repo"
         chmod +x "$PREFIX/bin/termux-fastest-repo"
-        download_file "$PREFIX/bin/termux-color" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/termux-color"
+        download_file "$PREFIX/bin/termux-color" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/termux-color"
         chmod +x "$PREFIX/bin/termux-color"
-        download_file "$PREFIX/bin/termux-nf" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/termux-nf"
+        download_file "$PREFIX/bin/termux-nf" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/termux-nf"
         chmod +x "$PREFIX/bin/termux-nf"
         cp "$shell_rc_file" "${shell_rc_file}-2"
         check_and_backup "$shell_rc_file"
@@ -4184,7 +4184,7 @@ function setup_fonts() {
 
 function run_wine_shortcut_script() {
     print_success "Adding wine desktop shortcuts..."
-    download_file "add-wine-shortcut" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/other/add-wine-shortcut"
+    download_file "add-wine-shortcut" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/other/add-wine-shortcut"
     chmod +x "add-wine-shortcut"
     . add-wine-shortcut
     check_and_delete "add-wine-shortcut"
@@ -4351,12 +4351,12 @@ function notes() {
     echo
     print_msg "${C}${BOLD}See Uses Section in github to know how to use it"
     echo
-    print_msg "${C}URL:- ${B}https://github.com/sabamdarif/termux-desktop/blob/main/README.md#5-usage-instructions"
+    print_msg "${C}URL:- ${B}https://github.com/ahksoft/ahk-termux-desktop/blob/main/README.md#5-usage-instructions"
     echo
     if [[ "$distro_add_answer" == "y" ]]; then
         print_msg "${C}${BOLD}See how to use Linux distro container"
         echo
-        print_msg "${C}URL:- ${B}https://github.com/sabamdarif/termux-desktop/blob/main/docs/proot-container.md"
+        print_msg "${C}URL:- ${B}https://github.com/ahksoft/ahk-termux-desktop/blob/main/docs/proot-container.md"
     fi
 }
 
@@ -4540,7 +4540,7 @@ function change_style() {
         read_conf
         gui_check_up
         banner
-        download_file "${current_path}/styles.md" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/docs/${de_name}_styles.md"
+        download_file "${current_path}/styles.md" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/docs/${de_name}_styles.md"
         style_name=$(grep -oP "^## $style_answer\..+?(?=(\n## \d+\.|\Z))" "${current_path}/styles.md" | sed -e "s/^## $style_answer\. //" -e "s/:$//" -e 's/^[[:space:]]*//;s/[[:space:]]*$//')
         check_and_delete "${current_path}/styles.md"
         print_msg "Your currently installed style is ${C}${BOLD}$style_name"
@@ -4785,7 +4785,7 @@ function reinstall_themes() {
     tmp_themes_folder="$PREFIX/tmp/themes"
     check_and_create_directory "$tmp_themes_folder"
     print_msg "Reinstalling Themes..."
-    download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/theme.tar.gz" "$tmp_themes_folder"
+    download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/theme.tar.gz" "$tmp_themes_folder"
     local theme_names
     theme_names=$(ls "$tmp_themes_folder")
     local theme_name
@@ -4809,7 +4809,7 @@ function reinstall_icons() {
     check_and_create_directory "$tmp_icons_folder"
     package_install_and_check "gdk-pixbuf"
     print_msg "Reinstalling Icons..."
-    download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/icon.tar.gz" "$tmp_icons_folder"
+    download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/icon.tar.gz" "$tmp_icons_folder"
     local icon_themes_names
     icon_themes_names=$(ls "$tmp_icons_folder")
     local icon_theme
@@ -4835,7 +4835,7 @@ function reinstall_config() {
     tmp_config_folder="$PREFIX/tmp/config"
     check_and_create_directory "$tmp_config_folder"
     print_msg "Reinstalling Config..."
-    download_and_extract "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/config.tar.gz" "$tmp_config_folder"
+    download_and_extract "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/setup-files/setup-files/${de_name}/look_${style_answer}/config.tar.gz" "$tmp_config_folder"
     local config_file_names
     config_file_names=$(ls "$tmp_config_folder")
     local config_file
@@ -4857,31 +4857,31 @@ function add_auto_completion() {
     print_msg "Adding auto completions..."
     check_and_create_directory "/data/data/com.termux/files/usr/share/zsh/site-functions"
     cd /data/data/com.termux/files/usr/share/zsh/site-functions
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/zsh/_setup-termux-desktop"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/zsh/_setup-termux-desktop"
     if [[ "$gui_mode" == "both" ]]; then
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/zsh/_vncstart"
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/zsh/_vncstop"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/zsh/_vncstart"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/zsh/_vncstop"
     fi
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/zsh/_tx11start"
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/zsh/_tx11stop"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/zsh/_tx11start"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/zsh/_tx11stop"
     if [[ "$distro_add_answer" == "y" ]]; then
-        download_file "_${selected_distro}" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/zsh/_distro"
+        download_file "_${selected_distro}" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/zsh/_distro"
         sed -i "s/distro/${selected_distro}/g" "_${selected_distro}"
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/zsh/_add2menu"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/zsh/_add2menu"
     fi
     check_and_create_directory "/data/data/com.termux/files/usr/share/bash-completion/completions"
     cd /data/data/com.termux/files/usr/share/bash-completion/completions
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/bash/setup-termux-desktop"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/bash/setup-termux-desktop"
     if [[ "$gui_mode" == "both" ]]; then
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/bash/vncstart"
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/bash/vncstop"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/bash/vncstart"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/bash/vncstop"
     fi
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/bash/tx11start"
-    download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/bash/tx11stop"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/bash/tx11start"
+    download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/bash/tx11stop"
     if [[ "$distro_add_answer" == "y" ]]; then
-        download_file "${selected_distro}" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/bash/distro"
+        download_file "${selected_distro}" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/bash/distro"
         sed -i "s/distro/${selected_distro}/g" "${selected_distro}"
-        download_file "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/completion/bash/add2menu"
+        download_file "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/completion/bash/add2menu"
     fi
     cd $HOME
 }
@@ -4985,7 +4985,7 @@ EOF
 function add_installer() {
     if [[ ! -e "$PREFIX/bin/setup-termux-desktop" ]]; then
         print_msg "Adding setup-termux-desktop installer to bin"
-        download_file "$PREFIX/bin/setup-termux-desktop" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/setup-termux-desktop"
+        download_file "$PREFIX/bin/setup-termux-desktop" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/setup-termux-desktop"
         chmod +x "$PREFIX/bin/setup-termux-desktop"
     fi
 }
@@ -5006,7 +5006,7 @@ function check_for_update_and_update_installer() {
         check_and_create_directory "$termux_desktop_path"
         local current_script_hash
         local update_installer
-        current_script_hash=$(curl -sL https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/setup-termux-desktop | sha256sum | cut -d ' ' -f 1)
+        current_script_hash=$(curl -sL https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/setup-termux-desktop | sha256sum | cut -d ' ' -f 1)
         local local_script_hash
         local_script_hash=$(basename "$(sha256sum "$PREFIX/bin/setup-termux-desktop" | cut -d ' ' -f 1)")
 
@@ -5151,7 +5151,7 @@ function install_termux_desktop() {
         fi
     fi
     if [[ "$1" == "--local-config" ]] || [[ "$1" == "--config" ]] || [[ "$1" == "-config" ]]; then
-        download_file "${current_path}/styles.md" "https://raw.githubusercontent.com/sabamdarif/termux-desktop/refs/heads/main/docs/${de_name}_styles.md"
+        download_file "${current_path}/styles.md" "https://raw.githubusercontent.com/ahksoft/ahk-termux-desktop/refs/heads/main/docs/${de_name}_styles.md"
         style_name=$(grep -oP "^## $style_answer\..+?(?=(\n## \d+\.|\Z))" "${current_path}/styles.md" | sed -e "s/^## $style_answer\. //" -e "s/:$//" -e 's/^[[:space:]]*//;s/[[:space:]]*$//')
         check_and_delete "${current_path}/styles.md"
     fi
@@ -5201,14 +5201,14 @@ function install_termux_desktop() {
 
 function show_help() {
     echo -e "
---debug           		to create a log file
--i,--install      		to start installation
--r,--remove       		to remove termux desktop
--c,--change       		to change some previous configuration
--ri,--reinstall   		to reinstall some previously install stuff
---reset           		to reset all changes made by this script without uninstalling any package
---local-config,-config	to start the installation from pre made config file
--h,--help         		to show help
+--debug                           to create a log file
+-i,--install                      to start installation
+-r,--remove                       to remove termux desktop
+-c,--change                       to change some previous configuration
+-ri,--reinstall                   to reinstall some previously install stuff
+--reset                           to reset all changes made by this script without uninstalling any package
+--local-config,-config        to start the installation from pre made config file
+-h,--help                         to show help
 "
 }
 
